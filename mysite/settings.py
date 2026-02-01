@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
-import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@z*o$*myc1zcm8-t_rppwux0g+u%u$!$!ndqw&@9nl=ec8f6%8'
+SECRET_KEY = 'django-insecure-y%#v#op#l$w+qk*qt)u*%&=y*%t#^!77)%wz&imqi&33tjt3=w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_blog',
 
+    'app_blog',  # <- обов’язково додати сюди твою аплікацію
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,8 +117,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = 'static/'
+import os
 
+# URL для статичних файлів
+STATIC_URL = '/static/'
+
+# Де будуть збиратися всі статичні файли при команді collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')  # <-- змінено, не same as STATICFILES_DIRS
+
+# Де Django шукатиме твої локальні статичні файли під час розробки
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # <-- тільки ця папка
+]
+
+# URL і директорія для медіа-файлів (картинки, uploaded files)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
