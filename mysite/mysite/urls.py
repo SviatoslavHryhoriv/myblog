@@ -1,15 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('app_blog.urls')),
-]
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    # твої url patterns тут
+    path('admin/', admin.site.urls),
+    path('', include('app_blog.urls')),
 ]
 
 if settings.DEBUG:
