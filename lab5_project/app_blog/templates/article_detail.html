@@ -3,14 +3,14 @@
 {% load static %}
 
 {% block content %}
-{% spaceless %}
-
 <div>
-    <ol class="breadcrumb">
-        <li><a href="/">Головна</a></li>
-        <li><a href="{% url 'articles-list' %}">Публікації</a></li>
-        <li>{{ item.title|upper }}</li>
-    </ol>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Головна</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'articles-list' %}">Публікації</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ item.title|upper }}</li>
+        </ol>
+    </nav>
     <div>
         <h3>
             {{ item.title }}
@@ -29,5 +29,4 @@
     </div>
     <div class='clearfix'></div>
 </div>
-{% endspaceless %}
 {% endblock %}
