@@ -8,11 +8,21 @@
 </section>
 
 {% if categories %}
-<div class="categories">
-    {% for item in categories %}
-        <a class="pill" href="{{ item.get_absolute_url }}">{{ item.category }}</a>
-    {% endfor %}
-</div>
+<nav class="navbar navbar-expand-md navbar-light bg-light rounded mb-4" role="navigation">
+    <div class="container-fluid">
+        <span class="navbar-brand">Категорії</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#categoriesNav" aria-controls="categoriesNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="categoriesNav">
+            <div class="navbar-nav">
+                {% for item in categories %}
+                    <a class="nav-link" href="{{ item.get_absolute_url }}">{{ item.category }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</nav>
 {% endif %}
 
 {% if articles %}
