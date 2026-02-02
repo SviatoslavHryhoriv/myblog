@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Головна</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'articles-list' %}">Публікації</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ item.title|upper }}</li>
+        </ol>
+    </nav>
+    <div>
+        <h3>
+            {{ item.title }}
+        </h3>
+        <h5>
+            {{ item.pub_date|date:"d E Y"|safe|linebreaks }}
+        </h5>
+    </div>
+    <div>
+        {{ item.description|escape|safe }}
+
+        {% if item.images.all %}
+        {% include 'fotorama.html' with images=images %}
+        {% endif %}
+
+    </div>
+    <div class='clearfix'></div>
+</div>
+{% endblock %}
