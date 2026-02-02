@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Персональний блог{% endblock %}</title>
+    <!-- Include Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link type="text/css" href="{% static 'css/main.css' %}" rel="stylesheet">
+    <style>
+        /* Additional inline styles for better layout */
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <span class="brand-icon">✦</span>
+                <span class="brand-text">Мій Блог</span>
+            </div>
+            <nav class="top-nav">
+                <a href="/" class="nav-link">🏠 Головна</a>
+                <a href="{% url 'articles-list' %}" class="nav-link">📚 Публікації</a>
+                <a href="/admin/" class="nav-link">⚙️ Адмін</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Javascripts Section -->
+    <script src="{% static 'js/jquery.js' %}" crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
+</body>
+</html>

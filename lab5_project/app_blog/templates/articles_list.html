@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="hero">
+    <h1>Публікації</h1>
+    {% if category %}<p>Категорія: {{ category }}</p>{% endif %}
+</section>
+
+<section class="cards">
+    {% for item in items %}
+    <article class="card">
+        <div class="card-image">
+            {% if item.images.all %}
+                <img src="{{ item.images.all.0.image.url }}" alt="{{ item.title }}">
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <span class="tag">{{ item.category }}</span>
+            <span class="date">{{ item.pub_date|date:"j M Y" }}</span>
+            <h3 class="card-title">{{ item.title }}</h3>
+            <p class="card-text">{{ item.description|safe|escape|striptags|truncatewords_html:18 }}</p>
+            <a class="btn" href="{{ item.get_absolute_url }}">Читати далі →</a>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

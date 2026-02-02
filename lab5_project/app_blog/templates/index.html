@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="hero">
+    <h1>Персональний блог</h1>
+    <p>Цікаві історії, корисні поради та натхнення щодня</p>
+</section>
+
+{% if categories %}
+<div class="categories">
+    {% for item in categories %}
+        <a class="pill" href="{{ item.get_absolute_url }}">{{ item.category }}</a>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if articles %}
+<section class="cards">
+    {% for item in articles %}
+    <article class="card">
+        <div class="card-image">
+            {% if item.images.all %}
+                <img src="{{ item.images.all.0.image.url }}" alt="{{ item.title }}">
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <span class="tag">{{ item.category }}</span>
+            <span class="date">{{ item.pub_date|date:"j M Y" }}</span>
+            <h3 class="card-title">{{ item.title }}</h3>
+            <p class="card-text">{{ item.description|safe|escape|striptags|truncatewords_html:18 }}</p>
+            <a class="btn" href="{{ item.get_absolute_url }}">Читати далі →</a>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+{% endif %}
+
+<div class="center">
+    <a class="btn btn-wide" href="{% url 'articles-list' %}">Всі публікації</a>
+</div>
+{% endblock %}
